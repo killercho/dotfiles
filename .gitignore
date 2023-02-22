@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# Except
+!.gitignore
+!.config/alacritty
+!.config/i3
+!.config/picom
+!.config/polybar
+!.zsh/
+!.gitconfig
+!.gitmodules
+!.vimrc
+!.zshrc
