@@ -60,9 +60,8 @@ au BufWrite * :Autoformat
 
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-x> :wq<CR>
 nnoremap <C-w> :w<CR>
-nnoremap <C-q> :q!<CR>
+nnoremap <C-q> :wq<CR>
 nnoremap <C-l> :tabn<CR>
 
 "<leader> is actually \
