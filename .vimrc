@@ -8,7 +8,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'OmniSharp/omnisharp-vim'
+"Plug 'dense-analysis/ale'
 call plug#end()
 
 set encoding=utf-8
@@ -16,7 +16,6 @@ set encoding=utf-8
 execute pathogen#infect()
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set tabstop=4
@@ -27,16 +26,16 @@ set background=dark
 set ttymouse=sgr
 set mouse=a
 
-"syntastic settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
-let g:syntastic_haskell_hlint_quiet_messages = { "level" : "warnings" }
-let g:syntastic_python_pylint_quiet_messages = { "level" : ["warnings", "errors"] }
-
 set number
+
+"airline settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '>'
+
+"ale settings
+"let g:ale_fix_on_save = 1
 
 "haskell settings
 syntax on
@@ -51,9 +50,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:haskell_indent_before_where = 1     " indent before a where clause
 let g:haskell_indent_guard = 1            " indent before a guard clause (|)
 
-"omnisharp variables
-let g:OmniSharp_server_use_mono = 1
-
 colorscheme OceanicNext
 
 au BufWrite * :Autoformat
@@ -62,7 +58,9 @@ nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-w> :w<CR>
 nnoremap <C-q> :wq<CR>
-nnoremap <C-l> :tabn<CR>
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+nnoremap <C-n> :tabnew<CR>
 
 "<leader> is actually \
 "normal nerd commenter commands are done using the leader key
