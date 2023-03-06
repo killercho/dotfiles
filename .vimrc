@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
+Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Chiel92/vim-autoformat'
@@ -63,8 +64,8 @@ nnoremap <C-w> :w<CR>
 nnoremap <C-q> :wq<CR>
 
 "Tab bindings
-nnoremap <C-l> gt
-nnoremap <C-h> gT
+nnoremap <C-l> gt<CR>
+nnoremap <C-h> gT<CR>
 nnoremap <C-n> :tabnew<CR>
 
 "Moving text around bindings
