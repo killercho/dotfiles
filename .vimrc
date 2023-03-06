@@ -54,13 +54,20 @@ colorscheme OceanicNext
 
 au BufWrite * :Autoformat
 
+"NERDTree bindings
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+"Save/Exit bindings
 nnoremap <C-w> :w<CR>
 nnoremap <C-q> :wq<CR>
+
+"Tab bindings
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <C-n> :tabnew<CR>
+
+"Moving text around bindings
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
 
