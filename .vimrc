@@ -27,6 +27,10 @@ set background=dark
 set ttymouse=sgr
 set mouse=a
 
+"folds a function, default bind is z->a
+set foldmethod=indent
+set foldlevel=99
+
 set number
 
 "airline settings
