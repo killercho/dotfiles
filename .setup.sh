@@ -1,12 +1,13 @@
 #!/bin/bash
 
 echo "Hello user!"
-echo "This script is going to install everything from the README list."
+echo "This script is going to install a list of programmes needed for normal work."
 echo "Do you want to continue? [Y/n]"
 read -r decision
 if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
 then
     echo "Continuing with installation..."
+    echo
     allApps=("ttf-hack"
         "xorg-server"
         "xorg-xinput"
@@ -54,7 +55,9 @@ then
             echo "Continue manually."
         else
             sudo git clone https://aur.archlinux.org/yay-git.git
-            sudo chown -R tecmint:tecmint ./yay-git
+            echo "Enter current username: "
+            read -r username
+            sudo chown -R $username:$username ./yay-git
             cd yay-git || echo "Could not enter yay-git"
             makepkg -si
             echo "Yay is installed."
@@ -73,6 +76,8 @@ then
             echo "Installing lightdm"
             sudo pacman -S lightdm
             sudo pacman -S lightdm-webkit2-greeter
+
+            echo "Background images should be located in /usr/share/backgrounds"
         fi
 
     else
