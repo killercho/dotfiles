@@ -29,16 +29,20 @@ then
         "clang"
         "make"
         "cmake"
-        "brave-nightly-bin"
+        "firefox"
         "bluez-utils"
         "alsa-utils"
         "alacritty"
-        "python-pip")
+        "python-pip"
+        "pywal"
+        "feh"
+        "light"
+        "fakeroot" )
 
         for i in "${!allApps[@]}";
         do
             echo
-            sudo pacman -S "${allApps[$i]}"
+            sudo pacman -S "${allApps[$i]}" --noconfirm
         done
 
         echo "Installing yay..."
@@ -68,6 +72,7 @@ then
         else
             echo "Installing lightdm"
             sudo pacman -S lightdm
+            sudo pacman -S lightdm-webkit2-greeter
         fi
 
     else
