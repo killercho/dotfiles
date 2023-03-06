@@ -61,8 +61,10 @@ nnoremap <C-q> :wq<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <C-n> :tabnew<CR>
+nnoremap <C-j> :m +1<CR>
+nnoremap <C-k> :m -2<CR>
 
 "<leader> is actually \
 "normal nerd commenter commands are done using the leader key
-nnoremap <C-k> :call nerdcommenter#Comment(0, 'toggle')<CR>
-vnoremap <C-k> :call nerdcommenter#Comment(0, 'toggle')<CR>
+nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
+vnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
