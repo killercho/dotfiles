@@ -9,7 +9,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 set encoding=utf-8
@@ -40,7 +40,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
 
 "ale settings
-"let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 
 "haskell settings
 syntax on
