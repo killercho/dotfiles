@@ -27,6 +27,9 @@ set background=dark
 set ttymouse=sgr
 set mouse=a
 
+set splitbelow
+set splitright
+
 "folds a function, default bind is z->a
 set foldmethod=indent
 set foldlevel=99
@@ -59,6 +62,20 @@ colorscheme OceanicNext
 
 au BufWrite * :Autoformat
 
+"Move trough visual lines
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+
+"Yanks from cursor to the end of the line
+nnoremap Y y$
+
+"Paste in different modes
+inoremap <C-p> <Esc>pa<CR>
+cnoremap <C-p> <C-r>"<CR>
+nnoremap <C-p> "+p<CR>
+
 "NERDTree bindings
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -79,4 +96,4 @@ nnoremap <C-k> :m -2<CR>
 "<leader> is actually \
 "normal nerd commenter commands are done using the leader key
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
-vnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
+xnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
