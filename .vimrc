@@ -12,6 +12,9 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
 call plug#end()
 
+filetype plugin indent on
+syntax on
+
 set encoding=utf-8
 
 execute pathogen#infect()
@@ -23,6 +26,12 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set background=dark
+
+set ttimeout
+set ttimeoutlen=50
+
+set wildmenu
+set wildmode=list:longest,full
 
 set ttymouse=sgr
 set mouse=a
@@ -36,6 +45,8 @@ set foldlevel=99
 
 set number
 
+set incsearch
+
 "airline settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -46,8 +57,6 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:ale_fix_on_save = 1
 
 "haskell settings
-syntax on
-filetype plugin indent on
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
