@@ -104,3 +104,5 @@ cat $HOME/.cache/wal/sequences
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="$PATH/$HOME/.local/bin"
+
+[ -f "/home/AzSamSi/.ghcup/env" ] && source "/home/AzSamSi/.ghcup/env" # ghcup-env
