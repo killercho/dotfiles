@@ -71,11 +71,16 @@ colorscheme OceanicNext
 
 au BufWrite * :Autoformat
 
-"Move trough visual lines
+"Movement binds
 nnoremap j gj
 nnoremap k gk
 xnoremap j gj
 xnoremap k gk
+
+nnoremap J 5j
+nnoremap K 5k
+xnoremap J 5j
+xnoremap K 5k
 
 "Yanks from cursor to the end of the line
 nnoremap Y y$
@@ -102,7 +107,5 @@ nnoremap <C-n> :tabnew<CR>
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
 
-"<leader> is actually \
-"normal nerd commenter commands are done using the leader key
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 xnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
