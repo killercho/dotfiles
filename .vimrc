@@ -85,6 +85,9 @@ xnoremap K 5k
 "Yanks from cursor to the end of the line
 nnoremap Y y$
 
+nnoremap zj mayyp`aj
+nnoremap zk mayyP`ak
+
 "Paste in different modes
 inoremap <C-p> <Esc>pa<CR>
 cnoremap <C-p> <C-r>"<CR>
