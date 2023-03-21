@@ -65,19 +65,26 @@ then
         fi
 
         echo "All programmes are installed with the exception of ly or lightdm."
-        echo "Do you want to install ly?"
-        echo "Negative answer will install lightdm. [y/n]"
+        echo "Do you want to install lightdm?"
+        echo "Negative answer will install ly. [y/n]"
         read -r decision
-        if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
+        if [ "$decision" = "n" ] || [ "$decision" = "N" ]
         then
             echo "Installing ly..."
             yay -S ly
         else
-            echo "Installing lightdm"
-            sudo pacman -S lightdm
-            sudo pacman -S lightdm-webkit2-greeter
+            lightPackages=( "lightdm"
+                "lightdm-webkit2-greeter"
+                "light-locker" )
 
-            echo "Background images should be located in /usr/share/backgrounds"
+                echo "Installing lightdm"
+                for i in "${!lightPackages[@]}";
+                do
+                    echo
+                    sudo pacman -S "${lightPackages[$i]}" --noconfirm
+                done
+
+                echo "Background images should be located in /usr/share/backgrounds"
         fi
 
     else
