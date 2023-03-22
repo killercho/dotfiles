@@ -43,7 +43,7 @@ set splitright
 set foldmethod=indent
 set foldlevel=99
 
-set relativenumber
+set number! relativenumber!
 
 set incsearch
 
