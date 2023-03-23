@@ -85,6 +85,7 @@ xnoremap K 5k
 "Yanks from cursor to the end of the line
 nnoremap Y y$
 
+"Copy and paste text under or over the cursor
 nnoremap zj mayyp`aj
 nnoremap zk mayyP`ak
 
