@@ -10,7 +10,7 @@
 !.zsh/
 !.gitconfig
 !.gitmodules
-!.vim/vimrc
+!.vim
 !.zshrc
 !.setup.sh
 !.xinitrc
