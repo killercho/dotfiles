@@ -11,6 +11,7 @@
 !.gitconfig
 !.gitmodules
 !.vim
+!.vim/vimrc
 !.zshrc
 !.setup.sh
 !.xinitrc
