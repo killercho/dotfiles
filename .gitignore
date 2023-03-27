@@ -12,6 +12,7 @@
 !.gitmodules
 !.vim
 !.vim/vimrc
+!.vim/autoload
 !.zshrc
 !.setup.sh
 !.xinitrc
