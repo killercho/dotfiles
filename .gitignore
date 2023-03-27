@@ -1,5 +1,5 @@
 # Ignore everything
-*
+/*
 
 # Except
 !.gitignore
@@ -10,9 +10,8 @@
 !.zsh/
 !.gitconfig
 !.gitmodules
-!.vim
-!.vim/vimrc
-!.vim/autoload
 !.zshrc
 !.setup.sh
 !.xinitrc
+!.vim/vimrc
+!.vim/autoload
