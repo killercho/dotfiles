@@ -103,7 +103,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 
 "Save/Exit bindings
 nnoremap <C-w> :w<CR>
-nnoremap <C-q> :wq<CR>
+nnoremap <C-q> :q<CR>
 
 "Tab bindings
 nnoremap <C-l> gt<CR>
@@ -114,5 +114,11 @@ nnoremap <C-n> :tabnew<CR>
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
 
+"Coc binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 xnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-reference)
+nnoremap <silent> <C-d> :call cocconf#ShowDocumentation()<CR>
