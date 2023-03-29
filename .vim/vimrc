@@ -32,6 +32,9 @@ set background=dark
 " Changes for the background happen on line 30.
 colorscheme OceanicNext
 
+" Airline theme
+let g:airline_theme='deus'
+
 set ttimeout
 set ttimeoutlen=50
 
