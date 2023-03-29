@@ -5,11 +5,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mhartington/oceanic-next'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
+Plug 'mhartington/oceanic-next'
 call plug#end()
 
 filetype plugin indent on
@@ -25,10 +25,14 @@ set statusline+=%*
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set background=dark
 
 set t_Co=256
 set termguicolors
+set background=dark
+
+" Original color is #1b2b34, changed to #1a2930.
+" Changes for the background happen on line 30.
+colorscheme OceanicNext
 
 set ttimeout
 set ttimeoutlen=50
@@ -69,8 +73,6 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 let g:haskell_indent_before_where = 1     " indent before a where clause
 let g:haskell_indent_guard = 1            " indent before a guard clause (|)
-
-colorscheme OceanicNext
 
 au BufWrite * :Autoformat
 
