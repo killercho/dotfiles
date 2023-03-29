@@ -17,8 +17,6 @@ syntax on
 
 set encoding=utf-8
 
-execute pathogen#infect()
-
 set statusline+=%#warningmsg#
 set statusline+=%*
 
