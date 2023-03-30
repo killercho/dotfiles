@@ -87,9 +87,6 @@ then
                 echo "Background images should be located in /usr/share/backgrounds"
         fi
 
-        echo "Installing vim-plug to ~/.vim/autoload/"
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
     else
         echo "Exiting..."
 fi
