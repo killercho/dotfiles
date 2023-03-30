@@ -3,7 +3,7 @@
 echo "Hello user!"
 echo "This script is going to install a list of programmes needed for normal work."
 echo "Do you want to continue? [Y/n]"
-read -r decision
+read -r -n1 decision
 if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
 then
     echo "Continuing with installation..."

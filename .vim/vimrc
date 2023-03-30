@@ -64,7 +64,7 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 "ale settings
 let g:ale_fix_on_save = 1
 
-"haskell settings
+"haskell settings for haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
