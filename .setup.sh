@@ -52,7 +52,7 @@ then
         if [ $failed = 0 ]
         then
             echo "Failed to cd into /opt ..."
-            echo "Continue manually."
+            echo "--------------------------- Continue manually. ---------------------------"
         else
             sudo git clone https://aur.archlinux.org/yay-git.git
             echo "Enter current username: "
