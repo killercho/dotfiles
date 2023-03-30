@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
