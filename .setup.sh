@@ -67,7 +67,7 @@ then
         echo "All programmes are installed with the exception of ly or lightdm."
         echo "Do you want to install lightdm?"
         echo "Negative answer will install ly. [y/n]"
-        read -r decision
+        read -r -n1 decision
         if [ "$decision" = "n" ] || [ "$decision" = "N" ]
         then
             echo "Installing ly..."
@@ -86,6 +86,9 @@ then
 
                 echo "Background images should be located in /usr/share/backgrounds"
         fi
+
+        echo "Installing vim-plug to ~/.vim/autoload/"
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     else
         echo "Exiting..."
