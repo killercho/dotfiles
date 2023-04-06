@@ -117,9 +117,12 @@ nnoremap <C-n> :tabnew<CR>
 nnoremap <C-j> :m +1<CR>
 nnoremap <C-k> :m -2<CR>
 
-"Coc binds
+"Comenter binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 xnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
+
+"Coc binds
+nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
