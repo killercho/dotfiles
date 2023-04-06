@@ -2,7 +2,7 @@
 
 echo "Hello user!"
 echo "This script is going to install a list of programmes needed for normal work."
-echo "Do you want to continue? [Y/n]"
+echo "Do you want to continue? [Y/n] \c"
 read -r -n1 decision
 if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
 then
@@ -55,7 +55,7 @@ then
             echo "--------------------------- Continue manually. ---------------------------"
         else
             sudo git clone https://aur.archlinux.org/yay-git.git
-            echo "Enter current username: "
+            echo "Enter current username: \c"
             read -r username
             sudo chown -R $username:$username ./yay-git
             cd yay-git || echo "Could not enter yay-git"
@@ -66,7 +66,7 @@ then
 
         echo "All programmes are installed with the exception of ly or lightdm."
         echo "Do you want to install lightdm?"
-        echo "Negative answer will install ly. [y/n]"
+        echo "Negative answer will install ly. [y/n] \c"
         read -r -n1 decision
         if [ "$decision" = "n" ] || [ "$decision" = "N" ]
         then
