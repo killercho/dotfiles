@@ -128,3 +128,13 @@ nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-reference)
 nnoremap <silent> <C-d> :call cocconf#ShowDocumentation()<CR>
+
+augroup vimStartup
+    au!
+    autocmd BufReadPost *
+                \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                \ |   exe "normal! g`\""
+                \ | endif
+augroup END
+
+
