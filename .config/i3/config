@@ -207,9 +207,5 @@ exec_always --no-startup-id pulseaudio --start
 exec_always --no-startup-id feh --bg-scale /usr/share/backgrounds/background.jpg
 exec_always --no-startup-id picom -b
 
-# Scrolling & tapping
-exec_always --no-startup-id xinput set-prop 13 "libinput Natural Scrolling Enabled" 1
-exec_always --no-startup-id xinput set-prop 13 "libinput Tapping Enabled" 1
-exec_always --no-startup-id xinput set-prop 14 "libinput Natural Scrolling Enabled" 1
-exec_always --no-startup-id xinput set-prop 14 "libinput Tapping Enabled" 1
+# Add different keyboard layout
 exec_always --no-startup-id setxkbmap -option 'grp:win_space_toggle' -layout us,bg -variant ,phonetic
