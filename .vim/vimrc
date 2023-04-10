@@ -121,6 +121,12 @@ nnoremap <C-k> :m -2<CR>
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 xnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 
+"Arrows moving splitted windows
+nnoremap <up> <c-w>k
+nnoremap <down> <c-w>j
+nnoremap <right> <c-w>l
+nnoremap <left> <c-w>h
+
 "Coc binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 nnoremap <silent> gd <Plug>(coc-definition)
