@@ -41,6 +41,9 @@ set ttimeoutlen=50
 set wildmenu
 set wildmode=list:longest,full
 
+set undodir=~/.vim/.vimundo
+set undofile
+
 set ttymouse=sgr
 set mouse=a
 
