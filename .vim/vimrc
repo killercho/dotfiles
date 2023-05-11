@@ -10,6 +10,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
 Plug 'mhartington/oceanic-next'
+
+Plug 'killercho/ivan-space-ninja'
 call plug#end()
 
 packadd! matchit
