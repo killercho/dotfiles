@@ -14,5 +14,5 @@
 !.setup.sh
 !.xinitrc
 !.vim/vimrc
-!.vim/autoload
 !.vim/ftdetect
+!.vim/autoload
