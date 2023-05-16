@@ -106,7 +106,7 @@ nnoremap zk mayyP`ak
 
 "Paste in different modes
 inoremap <C-p> <Esc>pa<CR>
-cnoremap <C-p> <C-r>"<CR>
+cnoremap <C-p> <C-r>"
 nnoremap <C-p> "+p<CR>
 
 "NERDTree bindings
