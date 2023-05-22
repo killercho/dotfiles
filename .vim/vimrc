@@ -137,6 +137,12 @@ nnoremap <down> <c-w>j
 nnoremap <right> <c-w>l
 nnoremap <left> <c-w>h
 
+"Arrows with <C> to resize splits
+nnoremap <c-up> 5<c-w>+
+nnoremap <c-down> 5<c-w>-
+nnoremap <c-left> 5<c-w>>
+nnoremap <c-right> 5<c-w><
+
 "Coc binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 nnoremap <silent> gd <Plug>(coc-definition)
