@@ -38,7 +38,8 @@ then
         "pywal"
         "feh"
         "light"
-        "fakeroot" )
+        "fakeroot"
+        "github-cli" )
 
         for i in "${!allApps[@]}";
         do
