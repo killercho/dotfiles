@@ -13,6 +13,8 @@
 !.zshrc
 !.setup.sh
 !.xinitrc
-!.vim/vimrc
-!.vim/ftdetect
-!.vim/autoload
+!.vim
+
+.vim/plugged
+.vim/.netrwhist
+.vim/.vimundo
