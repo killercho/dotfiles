@@ -61,7 +61,7 @@ set splitright
 set foldmethod=indent
 set foldlevel=99
 
-set number! relativenumber!
+set number relativenumber
 
 set incsearch
 
@@ -107,7 +107,7 @@ nnoremap zj mayyp`aj
 nnoremap zk mayyP`ak
 
 "Paste in different modes
-inoremap <C-p> <Esc>pa<CR>
+inoremap <C-p> <Esc>pa
 cnoremap <C-p> <C-r>"
 nnoremap <C-p> "+p<CR>
 
@@ -151,6 +151,9 @@ nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-reference)
 nnoremap <silent> <C-d> :call cocconf#ShowDocumentation()<CR>
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 augroup vimStartup
     au!
