@@ -12,8 +12,9 @@ Plug 'dense-analysis/ale'
 Plug 'mhartington/oceanic-next'
 Plug 'kristian3551/cppsnippets'
 
-Plug 'killercho/ivan-space-ninja'
 Plug 'vim/killersheep'
+
+Plug '/home/AzSamSi/Programming/Vim/ivan-space-ninja'
 call plug#end()
 
 packadd! matchit
