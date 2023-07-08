@@ -86,8 +86,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:haskell_indent_before_where = 1     " indent before a where clause
 let g:haskell_indent_guard = 1            " indent before a guard clause (|)
 
-au BufWrite * :Autoformat
-
 "Movement binds
 nnoremap j gj
 nnoremap k gk
@@ -162,3 +160,7 @@ augroup vimStartup
                 \ |   exe "normal! g`\""
                 \ | endif
 augroup END
+
+au BufWrite * :Autoformat
+
+autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
