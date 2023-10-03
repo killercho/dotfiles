@@ -4,7 +4,7 @@
 # Except
 !.gitignore
 !.zprofile
-!.config/scripts
+!.config/scripts/*
 !.config/alacritty
 !.config/i3
 !.config/picom
