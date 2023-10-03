@@ -3,10 +3,12 @@
 
 # Except
 !.gitignore
+!.zprofile
 !.config/alacritty
 !.config/i3
 !.config/picom
 !.config/polybar
+!.config/scripts
 !.zsh/
 !.gitconfig
 !.gitmodules
