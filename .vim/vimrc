@@ -159,6 +159,6 @@ augroup vimStartup
                 \ | endif
 augroup END
 
-au BufWrite * :Autoformat
+au BufWrite * if &ft != "text" && &ft != "md" | :Autoformat
 
-autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
+autocmd BufEnter * if &filetype == "" | setf text | endif
