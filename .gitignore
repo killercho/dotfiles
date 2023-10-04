@@ -1,21 +1,23 @@
 # Ignore everything
-/*
+*
 
 # Except
 !.gitignore
-!.zprofile
-!.config/scripts/*
+!.gitconfig
+!.gitmodules
+
+!.scripts/
 !.config/alacritty
 !.config/i3
 !.config/picom
 !.config/polybar
+!.vim/
 !.zsh/
-!.gitconfig
-!.gitmodules
+
+!.zprofile
 !.zshrc
 !.setup.sh
 !.xinitrc
-!.vim
 
 .vim/plugged
 .vim/.netrwhist
