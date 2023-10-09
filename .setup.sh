@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Hello user!"
-echo "This script is going to install a list of programmes needed for normal work."
+echo "This script is going to install a list of programs needed for normal work."
 echo "Do you want to continue? [Y/n] \c"
 read -r -n1 decision
 if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
@@ -62,7 +62,7 @@ then
             cd yay-git || echo "Could not enter yay-git"
             makepkg -si
             echo "Yay is installed."
-            cd ~ || echo "Failed to cd out..." && exit
+            cd ~ || echo "Failed to cd out..."
         fi
 
         echo "All programmes are installed with the exception of ly or lightdm."
