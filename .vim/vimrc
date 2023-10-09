@@ -9,7 +9,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
-"Plug 'mhartington/oceanic-next' - original oceanic-next
 Plug 'killercho/oceanic-next'
 Plug 'kristian3551/cppsnippets'
 
@@ -63,7 +62,7 @@ set number relativenumber
 set incsearch
 
 "airline settings
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
