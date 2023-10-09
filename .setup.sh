@@ -9,6 +9,9 @@ then
     echo "Continuing with installation..."
     echo
     allApps=("ttf-hack"
+        "ttf-font-awesome"
+        "ttf-jetbrains-mono"
+        "wget"
         "xorg-server"
         "xorg-xinput"
         "xorg-xinit"
@@ -39,7 +42,12 @@ then
         "feh"
         "light"
         "fakeroot"
-        "github-cli" )
+        "github-cli"
+        "vlc"
+        "htop"
+        "neofetch"
+        "nodejs"
+        "notification-daemon" )
 
         for i in "${!allApps[@]}";
         do
@@ -65,7 +73,7 @@ then
             cd ~ || echo "Failed to cd out..."
         fi
 
-        echo "All programmes are installed with the exception of ly or lightdm."
+        echo "All programs are installed with the exception of ly or lightdm."
         echo "Do you want to install lightdm?"
         echo "Negative answer will install ly. [y/n] \c"
         read -r -n1 decision
@@ -76,7 +84,8 @@ then
         else
             lightPackages=( "lightdm"
                 "lightdm-webkit2-greeter"
-                "light-locker" )
+                "light-locker"
+                "light" )
 
                 echo "Installing lightdm"
                 for i in "${!lightPackages[@]}";
@@ -100,5 +109,39 @@ EndSection
 
 EOM
 else
-    echo "Exiting..."
+    echo "Exiting the installation of programs..."
 fi
+
+echo "Do you want to move the contents of the dotfiles folder to ~/?"
+read -r -n1 decision
+if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
+then
+    echo "Moving..."
+    mv dotfiles/* ~/
+    rm -rf dotfiles
+fi
+
+echo "Do you want to have zsh as your default shell?"
+read -r -n1 decision
+if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
+then
+    echo "Switching to zsh..."
+    sudo pacman -S "zsh" --noconfirm
+    chsh -s /usr/bin/zsh
+    echo "Do you want to install oh-my-zsh also?"
+    read -r -n1 decision
+    if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
+    then
+        echo "Installing omz..."
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        failed=1
+        cd ~ || echo "Failed to cd to home. Switch the name of .zshrc.pre-oh-my-zsh to .zshrc manually!" || failed=0
+        if [ $failed = 1 ]
+        then
+            rm .zshrc
+            mv .zshrc.pre-oh-my-zsh .zshrc
+        fi
+    fi
+fi
+
+echo "Thank you for installing!"
