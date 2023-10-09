@@ -9,7 +9,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
-Plug 'mhartington/oceanic-next'
+"Plug 'mhartington/oceanic-next' - original oceanic-next
+Plug 'killercho/oceanic-next'
 Plug 'kristian3551/cppsnippets'
 
 Plug '/home/AzSamSi/Programming/Vim/ivan-space-ninja'
@@ -33,8 +34,6 @@ set t_Co=256
 set termguicolors
 set background=dark
 
-" Original color is #1b2b34, changed to #1a2930.
-" Changes for the background happen on line 30.
 colorscheme OceanicNext
 
 " Airline theme
