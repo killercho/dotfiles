@@ -157,6 +157,6 @@ augroup vimStartup
                 \ | endif
 augroup END
 
-au BufWrite * if &ft != "text" && &ft != "md" | :Autoformat
+au BufWrite * if &ft != "text" && &ft != "markdown" | :Autoformat
 
 autocmd BufEnter * if &filetype == "" | setf text | endif
