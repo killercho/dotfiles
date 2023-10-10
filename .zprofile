@@ -3,7 +3,7 @@ then
     exec startx
 fi
 
-SCRIPTS_DIR=$HOME/.config/scripts
+SCRIPTS_DIR=$HOME/.scripts
 
 if [[ -d $SCRIPTS_DIR ]]
 then
