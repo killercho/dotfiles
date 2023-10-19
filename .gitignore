@@ -1,24 +1,3 @@
-# Ignore everything
-*
-
-# Except
-!.gitignore
-!.gitconfig
-!.gitmodules
-
-!.scripts/
-!.config/alacritty
-!.config/i3
-!.config/picom
-!.config/polybar
-!.vim/
-!.zsh/
-
-!.zprofile
-!.zshrc
-!.setup.sh
-!.xinitrc
-
 .vim/plugged
 .vim/.netrwhist
 .vim/.vimundo
