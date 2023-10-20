@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#TODO: Make different functions for all the options and a better menu screen to choose only parts of the  install.
+#TODO: Add a greeter install to the lightdm config. (https://github.com/lveteau/lightdm-webkit-modern-arch-theme  -  this is the latest theme i used)
+#TODO: Add links to all the correct places from the dotfiles directory instead of just moving the files.
+
 echo "Hello user!"
 echo "This script is going to install a list of programs needed for normal work."
 echo "Do you want to continue? [Y/n] \c"
