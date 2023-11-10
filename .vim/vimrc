@@ -44,7 +44,11 @@ set ttimeoutlen=50
 set wildmenu
 set wildmode=list:longest,full
 
-set undodir=~/.vim/.vimundo
+"create the undofile dir if it's not there
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
 set undofile
 
 set ttymouse=sgr
