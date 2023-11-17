@@ -4,6 +4,101 @@
 #TODO: Add a greeter install to the lightdm config. (https://github.com/lveteau/lightdm-webkit-modern-arch-theme  -  this is the latest theme i used)
 #TODO: Add links to all the correct places from the dotfiles directory instead of just moving the files.
 
+# -------------------------------------------- NEW VERSION (IN PROGRESS) --------------------------------------------
+
+link_dotfiles () {
+    echo "Linking dotfiles to the correct location..."
+    echo "WARNING! All unsaved config files in the target directories will be deleted!"
+    read -p "Are you sure you want to continue? " yn
+    case $yn in
+        [Yy]* ) ;;
+        [Nn]* ) return 1;;
+        * ) echo "Please answer yes or no.";;
+    esac
+    echo "Linking .config folder files"
+    if [ -d ~/.config/i3 ]
+    then
+        rm -rf ~/.config/i3
+    fi
+    ln -sf .config/i3 ~/.config/i3
+
+    if [ -d ~/.config/alacritty ]
+    then
+        rm -rf ~/.config/alacritty
+    fi
+    ln -sf .config/alacritty ~/.config/alacritty
+
+    if [ -d ~/.config/picom ]
+    then
+        rm -rf ~/.config/picom
+    fi
+    ln -sf .config/picom ~/.config/picom
+
+    if [ -d ~/.config/polybar ]
+    then
+        rm -rf ~/.config/polybar
+    fi
+    ln -sf .config/polybar ~/.config/polybar
+
+    echo "Linking vim folder..."
+    if [ -d ~/.vim ]
+    then
+        rm -rf ~/.vim
+    fi
+    ln -sf .vim ~/.vim
+
+    echo "Linking zsh folder..."
+    if [ -d ~/.zsh ]
+    then
+        rm -rf ~/.zsh
+    fi
+    ln -sf .zsh ~/.zsh
+
+    echo "Linking other single files..."
+    ln -sf .xinitrc ~/.xinitrc
+    ln -sf .zprofile ~/.zprofile
+    ln -sf .zshrc ~/.zshrc
+
+    echo "Linking done!"
+    return 0
+}
+
+setup_vim_env () {
+    echo "Installing pluggins..."
+    vim -c PlugInstall \
+        -c qa! # Quitting vim after the PlugInstall command is ran
+
+    return 0
+}
+
+set_zsh_default () {
+    echo "Switching to zsh as a default shell..."
+    sudo pacman -S "zsh" --noconfirm
+    chsh -s /usr/bin/zsh
+
+    while true
+    do
+        read -p "Do you want to install oh-my-zsh also?" yn
+        case $yn in
+            [Yy]* ) ;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+
+    echo "Installing omz..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    failed=1
+    cd ~ || echo "Failed to cd to home. Switch the name of .zshrc.pre-oh-my-zsh to .zshrc manually!" || failed=0
+    if [ $failed = 1 ]
+    then
+        rm .zshrc
+        mv .zshrc.pre-oh-my-zsh .zshrc
+    fi
+}
+
+# --------------------------------------------        OLD VERSION        --------------------------------------------
+
 echo "Hello user!"
 echo "This script is going to install a list of programs needed for normal work."
 echo "Do you want to continue? [Y/n] \c"
@@ -116,6 +211,7 @@ else
     echo "Exiting the installation of programs..."
 fi
 
+# -----------------  Functions Done  -----------------
 echo "Do you want to move the contents of the dotfiles folder to ~/?"
 read -r -n1 decision
 if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
@@ -147,5 +243,6 @@ then
         fi
     fi
 fi
+# -----------------  Functions Done  -----------------
 
 echo "Thank you for installing!"
