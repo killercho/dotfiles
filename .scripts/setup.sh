@@ -387,7 +387,7 @@ main () {
             "Setup vim's plugins")                setup_vim_env ;;
             "Link dotfiles to the correct place") link_dotfiles ;;
             "Better mouse")                       enable_better_mouse_movements ;;
-            "Grab background colors")             enable_better_mouse_movements ;;
+            "Grab background colors")             grab_backround_colors ;;
             "Github authenticate")                authenticate_github ;;
             *)                                    echo "Goodbye!"; break;;
         esac
