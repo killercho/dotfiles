@@ -175,13 +175,10 @@ install_sounds () {
 }
 
 install_system () {
-    systems=("wget"
-        "xdg-utils"
-        "polybar"
+    systems=("polybar"
         "picom-git"
         "i3-wm"
         "i3status"
-        "flameshot"
         "dmenu"
         "clang"
         "cmake"
@@ -191,7 +188,6 @@ install_system () {
         "light"
         "fakeroot"
         "notification-daemon"
-        "feh"
         "pywal"
         "dolphin"
     )
@@ -204,8 +200,12 @@ install_system () {
     return 0
 }
 
-install_other_programs () {
+install_others () {
     others=("gvim"
+        "wget"
+        "xdg-utils"
+        "feh"
+        "flameshot"
         "dhcpcd"
         "firefox"
         "python-pip"
@@ -294,161 +294,75 @@ return 0
 }
 
 authenticate_github () {
-    echo "Run gh auth app..."
-}
-
-main () {
-    echo "This is the main function with the main menu"
+    gh auth login
     return 0
 }
 
-# --------------------------------------------        OLD VERSION        --------------------------------------------
+execute_all () {
+    # Function that executes all other functions in the main menu
+    install_system
+    install_xorg
+    install_fonts
+    install_sound
+    install_other
+    install_yay
+    install_ly
+    install_lightdm
+    set_zsh_default
+    setup_vim_env
+    link_dotfiles
+    enable_better_mouse_movements
+    authenticate_github
 
-#echo "Hello user!"
-#echo "This script is going to install a list of programs needed for normal work."
-#echo "Do you want to continue? [Y/n] \c"
-#read -r -n1 decision
-#if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
-#then
-#echo "Continuing with installation..."
-#echo
-#allApps=("ttf-hack" # installed
-#"ttf-font-awesome" # installed
-#"ttf-jetbrains-mono" # installed
-#"wget" # installed
-#"xorg-server" # installed
-#"xorg-xinput" # installed
-#"xorg-xinit" # installed
-#"xorg-xbacklight" # installed
-#"xdg-utils" # installed
-#"pulseaudio" # installed
-#"pulseaudio-alsa" # installed
-#"pulseaudio-bluetooth" # installed
-#"polybar" # installed
-#"picom-git" # installed
-#"i3-wm" # installed
-#"i3status" # installed
-#"gvim" # installed
-#"flex" # installed
-#"flameshot" # installed
-#"dolphin" # installed
-#"dmenu" # installed
-#"dhcpcd" # installed
-#"clang" # installed
-#"make" # installed
-#"cmake" # installed
-#"firefox" # installed
-#"bluez-utils" # installed
-#"alsa-utils" # installed
-#"alacritty" # installed
-#"python-pip" # installed
-#"pywal" # installed
-#"feh"  # installed
-#"light" # installed
-#"fakeroot" # installed
-#"github-cli" # installed
-#"vlc" # installed
-#"htop" # installed
-#"neofetch" # installed
-#"nodejs" # installed
-#"notification-daemon" # installed
-#)
+    return 0
+}
 
-    #for i in "${!allApps[@]}";
-    #do
-    #echo
-    #sudo pacman -S "${allApps[$i]}" --noconfirm
-    #done
+main () {
+    get_package_install_options
 
-    #echo "Installing yay..."
-    #failed=1
-    #cd /opt || failed=0
-    #if [ $failed = 0 ]
-    #then
-    #echo "Failed to cd into /opt ..."
-    #echo "--------------------------- Continue manually. ---------------------------"
-    #else
-    #sudo git clone https://aur.archlinux.org/yay-git.git
-    #echo "Enter current username: \c"
-    #read -r username
-    #sudo chown -R $username:$username ./yay-git
-    #cd yay-git || echo "Could not enter yay-git"
-    #makepkg -si
-    #echo "Yay is installed."
-    #cd ~ || echo "Failed to cd out..."
-    #fi
+    echo "Hello user!"
+    echo "This script is going to install a list of programs needed for normal work."
+    echo "This is the main menu from which you can choose what to install."
 
-    #echo "All programs are installed with the exception of ly or lightdm."
-    #echo "Do you want to install lightdm?"
-    #echo "Negative answer will install ly. [y/n] \c"
-    #read -r -n1 decision
-    #if [ "$decision" = "n" ] || [ "$decision" = "N" ]
-    #then
-    #echo "Installing ly..."
-    #yay -S ly
-    #else
-    #lightPackages=( "lightdm"
-    #"lightdm-webkit2-greeter"
-    #"light-locker"
-    #"light" )
+    allOptions=("All (fresh install)"
+        "Install system programs"
+        "Install xorg programs"
+        "Install fonts"
+        "Install sound programs"
+        "Install other programs"
+        "Install yay"
+        "Install ly"
+        "Install lightdm"
+        "Set zsh as the default shell"
+        "Setup vim's plugins"
+        "Link dotfiles to the correct place"
+        "Better mouse"
+        "Github authenticate"
+        "Cancel"
+    )
+    PS3="Select an option: "
+    select option in "${allOptions[@]}"
+    do
+        case $option in
+            "All (fresh install)") execute_all ;;
+            "Install system programs") install_system ;;
+            "Install xorg programs") install_xorg ;;
+            "Install fonts") install_fonts ;;
+            "Install sound programs") install_sounds;;
+            "Install other programs") install_others;;
+            "Install yay") install_yay ;;
+            "Install ly") install_ly ;;
+            "Install lightdm") install_lightdm ;;
+            "Set zsh as the default shell") set_zsh_default ;;
+            "Setup vim's plugins") setup_vim_env ;;
+            "Link dotfiles to the correct place") link_dotfiles ;;
+            "Better mouse")        enable_better_mouse_movements ;;
+            "Github authenticate") authenticate_github ;;
+            "Cancel")              echo "Goodbye!"; break;;
+        esac
+    done
 
-            #echo "Installing lightdm"
-            #for i in "${!lightPackages[@]}";
-            #do
-            #echo
-            #sudo pacman -S "${lightPackages[$i]}" --noconfirm
-            #done
+    return 0
+}
 
-            #echo "Background images should be located in /usr/share/backgrounds"
-            #fi
-
-    #echo "Enabling tapping and natural scrolling..."
-    #sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOM' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-    #Section "InputClass"
-    #Identifier "touchpad"
-    #MatchIsTouchpad "on"
-    #Driver "libinput"
-    #Option "Tapping" "on"
-    #Option "NaturalScrolling" "True"
-    #EndSection
-
-        #EOM
-        #else
-        #echo "Exiting the installation of programs..."
-        #fi
-
-## -----------------  Functions Done  -----------------
-#echo "Do you want to move the contents of the dotfiles folder to ~/?"
-#read -r -n1 decision
-#if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
-#then
-#echo "Moving..."
-#mv dotfiles/* ~/
-#rm -rf dotfiles
-#fi
-
-#echo "Do you want to have zsh as your default shell?"
-#read -r -n1 decision
-#if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
-#then
-#echo "Switching to zsh..."
-#sudo pacman -S "zsh" --noconfirm
-#chsh -s /usr/bin/zsh
-#echo "Do you want to install oh-my-zsh also?"
-#read -r -n1 decision
-#if [ "$decision" = "y" ] || [ "$decision" = "Y" ]
-#then
-#echo "Installing omz..."
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#failed=1
-#cd ~ || echo "Failed to cd to home. Switch the name of .zshrc.pre-oh-my-zsh to .zshrc manually!" || failed=0
-#if [ $failed = 1 ]
-#then
-#rm .zshrc
-#mv .zshrc.pre-oh-my-zsh .zshrc
-#fi
-#fi
-#fi
-## -----------------  Functions Done  -----------------
-
-#echo "Thank you for installing!"
+main
