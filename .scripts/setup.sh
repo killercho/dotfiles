@@ -17,7 +17,7 @@ get_package_install_options () {
     osInfo[/etc/debian_version]=apt-get
     osInfo[/etc/alpine-release]=apk
 
-    for f in ${!osInfo[@]}
+    for f in "${!osInfo[@]}"
     do
         if [[ -f $f ]];then
             package_manager=${osInfo[$f]}
@@ -52,7 +52,7 @@ get_package_install_options () {
 link_dotfiles () {
     echo "Linking dotfiles to the correct location..."
     echo "WARNING! All unsaved config files in the target directories will be deleted!"
-    read -p "Are you sure you want to continue? " yn
+    read -p -r "Are you sure you want to continue? " yn
     case $yn in
         [Yy]* ) ;;
         [Nn]* ) return 1;;
@@ -121,7 +121,7 @@ set_zsh_default () {
 
     while true
     do
-        read -p "Do you want to install oh-my-zsh also?" yn
+        read -p -r "Do you want to install oh-my-zsh also?" yn
         case $yn in
             [Yy]* ) ;;
             [Nn]* ) return 1;;
@@ -147,7 +147,7 @@ install_fonts () {
     for i in "${!fonts[@]}";
     do
         echo
-        sudo ${package_install} "${fonts[$i]}" ${package_last_option}
+        sudo "${package_install}" "${fonts[$i]}" "${package_last_option}"
     done
     return 0
 }
@@ -158,7 +158,7 @@ install_xorg () {
     for i in "${!xorgs[@]}";
     do
         echo
-        sudo ${package_install} "${xorgs[$i]}" ${package_last_option}
+        sudo "${package_install}" "${xorgs[$i]}" "${package_last_option}"
     done
     return 0
 }
@@ -169,7 +169,7 @@ install_sounds () {
     for i in "${!sounds[@]}";
     do
         echo
-        sudo ${package_install} "${sounds[$i]}" ${package_last_option}
+        sudo "${package_install}" "${sounds[$i]}" "${package_last_option}"
     done
     return 0
 }
@@ -195,7 +195,7 @@ install_system () {
     for i in "${!systems[@]}";
     do
         echo
-        sudo ${package_install} "${system[$i]}" ${package_last_option}
+        sudo "${package_install}" "${systems[$i]}" "${package_last_option}"
     done
     return 0
 }
@@ -219,7 +219,7 @@ install_others () {
     for i in "${!others[@]}";
     do
         echo
-        sudo ${package_install} "${others[$i]}" ${package_last_option}
+        sudo "${package_install}" "${others[$i]}" "${package_last_option}"
     done
     return 0
 }
@@ -236,7 +236,7 @@ install_yay () {
 
     sudo git clone https://aur.archlinux.org/yay-git.git
     username=$(whoami)
-    sudo chown -R $username:$username ./yay-git
+    sudo chown -R "$username":"$username" ./yay-git
     failed=0
     cd yay-git || failed=1
     if [ $failed = 1 ]
@@ -271,7 +271,7 @@ install_lightdm () {
     for i in "${!lightPackages[@]}";
     do
         echo
-        sudo ${package_install} "${lightPackages[$i]}" ${package_last_option}
+        sudo "${package_install}" "${lightPackages[$i]}" "${package_last_option}"
     done
     echo "Background images should be located in /usr/share/backgrounds"
 }
@@ -280,17 +280,17 @@ enable_better_mouse_movements () {
     # Enables the natural scrolling and tapping for a laptop's touchpad
 
     sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOM' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-Section "InputClass"
-        Identifier "touchpad"
-        MatchIsTouchpad "on"
-        Driver "libinput"
-        Option "Tapping" "on"
-        Option "NaturalScrolling" "True"
-EndSection
+    Section "InputClass"
+    Identifier "touchpad"
+    MatchIsTouchpad "on"
+    Driver "libinput"
+    Option "Tapping" "on"
+    Option "NaturalScrolling" "True"
+    EndSection
 
-EOM
+    EOM
 
-return 0
+    return 0
 }
 
 authenticate_github () {
