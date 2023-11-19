@@ -279,18 +279,20 @@ install_lightdm () {
 enable_better_mouse_movements () {
     # Enables the natural scrolling and tapping for a laptop's touchpad
 
-    sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOM' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-    Section "InputClass"
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf > /dev/null <<EOT
+Section "InputClass"
     Identifier "touchpad"
     MatchIsTouchpad "on"
     Driver "libinput"
     Option "Tapping" "on"
     Option "NaturalScrolling" "True"
-    EndSection
+EndSection
 
-    EOM
+EOT
 
-    return 0
+echo
+return 0
 }
 
 authenticate_github () {
@@ -336,7 +338,7 @@ main () {
         "Set zsh as the default shell"
         "Setup vim's plugins"
         "Link dotfiles to the correct place"
-        "Better mouse"
+        "Enable mouse tapping and natural scrolling"
         "Github authenticate"
         "Cancel"
     )
@@ -344,21 +346,21 @@ main () {
     select option in "${allOptions[@]}"
     do
         case $option in
-            "All (fresh install)") execute_all ;;
-            "Install system programs") install_system ;;
-            "Install xorg programs") install_xorg ;;
-            "Install fonts") install_fonts ;;
-            "Install sound programs") install_sounds;;
-            "Install other programs") install_others;;
-            "Install yay") install_yay ;;
-            "Install ly") install_ly ;;
-            "Install lightdm") install_lightdm ;;
-            "Set zsh as the default shell") set_zsh_default ;;
-            "Setup vim's plugins") setup_vim_env ;;
+            "All (fresh install)")                execute_all ;;
+            "Install system programs")            install_system ;;
+            "Install xorg programs")              install_xorg ;;
+            "Install fonts")                      install_fonts ;;
+            "Install sound programs")             install_sounds;;
+            "Install other programs")             install_others;;
+            "Install yay")                        install_yay ;;
+            "Install ly")                         install_ly ;;
+            "Install lightdm")                    install_lightdm ;;
+            "Set zsh as the default shell")       set_zsh_default ;;
+            "Setup vim's plugins")                setup_vim_env ;;
             "Link dotfiles to the correct place") link_dotfiles ;;
-            "Better mouse")        enable_better_mouse_movements ;;
-            "Github authenticate") authenticate_github ;;
-            "Cancel")              echo "Goodbye!"; break;;
+            "Better mouse")                       enable_better_mouse_movements ;;
+            "Github authenticate")                authenticate_github ;;
+            *)                                    echo "Goodbye!"; break;;
         esac
     done
 
