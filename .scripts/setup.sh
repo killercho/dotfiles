@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#TODO: Make different functions for all the options and a better menu screen to choose only parts of the  install.
-#TODO: Add a greeter install to the lightdm config. (https://github.com/lveteau/lightdm-webkit-modern-arch-theme  -  this is the latest theme i used)
-#TODO: Add links to all the correct places from the dotfiles directory instead of just moving the files.
-
-# -------------------------------------------- NEW VERSION (IN PROGRESS) --------------------------------------------
-
 package_install=""
 package_last_option=""
 get_package_install_options () {
@@ -261,6 +255,21 @@ install_ly () {
     fi
 }
 
+install_lightdm_greeter () {
+    echo "Link to the official theme i use: (https://github.com/lveteau/lightdm-webkit-modern-arch-theme)."
+    echo "To use the theme you have to change some files in /etc/lightdm/"
+    echo "First go to that folder and open the lightdm.conf file."
+    echo "There change the greeter-session value to lightdm-webkit2-greeter"
+    echo "Also change the webkit_theme value to ltheme in the lightdm-webkit2-greeter.conf"
+    echo "Everything else should be done automatically. Enjoy!"
+
+    git clone https://github.com/lveteau/lightdm-webkit-modern-arch-theme.git
+    sh lightdm-webkit-modern-arch-theme/install.sh
+    rm -rf lightdm-webkit-modern-arch-theme
+
+    return 0
+}
+
 install_lightdm () {
     lightPackages=( "lightdm"
         "lightdm-webkit2-greeter"
@@ -273,7 +282,15 @@ install_lightdm () {
         echo
         sudo "${package_install}" "${lightPackages[$i]}" "${package_last_option}"
     done
-    echo "Background images should be located in /usr/share/backgrounds"
+
+    install_lightdm_greeter
+
+    echo "Background images should be located in /usr/share/backgrounds and it's name should be background.jpg"
+    echo "WARNING! 'feh' needs to be installed for this version of the background to work"
+    echo "In a full installation it is installed in the 'other' section of programs"
+    echo "If you want to change something search for 'feh' in the i3 config file"
+
+    return 0
 }
 
 enable_better_mouse_movements () {
