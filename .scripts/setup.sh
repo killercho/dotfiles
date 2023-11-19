@@ -182,7 +182,6 @@ install_system () {
         "light"
         "fakeroot"
         "notification-daemon"
-        "pywal"
         "dolphin"
     )
 
@@ -215,6 +214,9 @@ install_others () {
         echo
         sudo "${package_install}" "${others[$i]}" "${package_last_option}"
     done
+
+    pip3 install pywal
+
     return 0
 }
 
@@ -286,6 +288,7 @@ install_lightdm () {
     install_lightdm_greeter
 
     echo "Background images should be located in /usr/share/backgrounds and it's name should be background.jpg"
+    echo "When you have a picture there that suits your background run the 'Grab background colors' option in the menu"
     echo "WARNING! 'feh' needs to be installed for this version of the background to work"
     echo "In a full installation it is installed in the 'other' section of programs"
     echo "If you want to change something search for 'feh' in the i3 config file"
@@ -314,6 +317,13 @@ return 0
 
 authenticate_github () {
     gh auth login
+    return 0
+}
+
+grab_backround_colors () {
+    echo "WARNING! 'pywal' needs to be installed to get colors"
+    echo "In a fresh install the program is installed in the 'other' section of programs"
+    wal -i /usr/share/backgrounds/background.jpg
     return 0
 }
 
@@ -357,6 +367,7 @@ main () {
         "Link dotfiles to the correct place"
         "Enable mouse tapping and natural scrolling"
         "Github authenticate"
+        "Grab background colors"
         "Cancel"
     )
     PS3="Select an option: "
@@ -376,6 +387,7 @@ main () {
             "Setup vim's plugins")                setup_vim_env ;;
             "Link dotfiles to the correct place") link_dotfiles ;;
             "Better mouse")                       enable_better_mouse_movements ;;
+            "Grab background colors")             enable_better_mouse_movements ;;
             "Github authenticate")                authenticate_github ;;
             *)                                    echo "Goodbye!"; break;;
         esac
