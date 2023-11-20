@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Use the sed -i 's/pattern/replace' command to change the text in the config files
+
 package_install=""
 package_last_option=""
 get_package_install_options () {
@@ -335,12 +337,13 @@ execute_all () {
     install_sound
     install_other
     install_yay
-    install_ly
+    #install_ly
     install_lightdm
     set_zsh_default
     setup_vim_env
     link_dotfiles
     enable_better_mouse_movements
+    grab_backround_colors
     authenticate_github
 
     return 0
