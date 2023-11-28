@@ -1,6 +1,6 @@
-nnoremap ! :call CompileFile()<cr>
+nnoremap ! :call CompileFileC()<cr>
 
-func CompileFile()
+func CompileFileC()
     let s:name = expand('%:t')
     exe ':!gcc ' . s:name . ' && ./a.out'
 endfunc

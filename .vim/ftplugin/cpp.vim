@@ -1,6 +1,6 @@
-nnoremap ! :call CompileFile()<cr>
+nnoremap ! :call CompileFileCpp()<cr>
 
-func CompileFile()
+func CompileFileCpp()
     let s:name = expand('%:t')
     exe ':!g++ ' . s:name . ' && ./a.out'
 endfunc
