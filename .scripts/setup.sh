@@ -377,22 +377,22 @@ main () {
     select option in "${allOptions[@]}"
     do
         case $option in
-            "All (fresh install)")                execute_all ;;
-            "Install system programs")            install_system ;;
-            "Install xorg programs")              install_xorg ;;
-            "Install fonts")                      install_fonts ;;
-            "Install sound programs")             install_sounds;;
-            "Install other programs")             install_others;;
-            "Install yay")                        install_yay ;;
-            "Install ly")                         install_ly ;;
-            "Install lightdm")                    install_lightdm ;;
-            "Set zsh as the default shell")       set_zsh_default ;;
-            "Setup vim's plugins")                setup_vim_env ;;
-            "Link dotfiles to the correct place") link_dotfiles ;;
-            "Better mouse")                       enable_better_mouse_movements ;;
-            "Grab background colors")             grab_backround_colors ;;
-            "Github authenticate")                authenticate_github ;;
-            *)                                    echo "Goodbye!"; break;;
+            "All (fresh install)")                         execute_all ;;
+            "Install system programs")                     install_system ;;
+            "Install xorg programs")                       install_xorg ;;
+            "Install fonts")                               install_fonts ;;
+            "Install sound programs")                      install_sounds;;
+            "Install other programs")                      install_others;;
+            "Install yay")                                 install_yay ;;
+            "Install ly")                                  install_ly ;;
+            "Install lightdm")                             install_lightdm ;;
+            "Set zsh as the default shell")                set_zsh_default ;;
+            "Setup vim's plugins")                         setup_vim_env ;;
+            "Link dotfiles to the correct place")          link_dotfiles ;;
+            "Enable mouse tapping and natural scrolling")  enable_better_mouse_movements ;;
+            "Grab background colors")                      grab_backround_colors ;;
+            "Github authenticate")                         authenticate_github ;;
+            *)                                             echo "Goodbye!"; break;;
         esac
     done
 
