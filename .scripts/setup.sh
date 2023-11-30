@@ -337,6 +337,12 @@ grab_backround_colors () {
     return 0
 }
 
+start_user_services () {
+    systemctl --user daemon-reload
+    systemctl --user start battery_notify.service
+    systemctl --user enable battery_notify.service
+}
+
 execute_all () {
     # Function that executes all other functions in the main menu
     install_system
@@ -353,6 +359,7 @@ execute_all () {
     enable_better_mouse_movements
     grab_backround_colors
     authenticate_github
+    start_user_services
 
     return 0
 }
@@ -379,6 +386,7 @@ main () {
         "Enable mouse tapping and natural scrolling"
         "Github authenticate"
         "Grab background colors"
+        "Start user systemctl services"
         "Cancel"
     )
     PS3="Select an option: "
@@ -399,6 +407,7 @@ main () {
             "Link dotfiles to the correct place")          link_dotfiles ;;
             "Enable mouse tapping and natural scrolling")  enable_better_mouse_movements ;;
             "Grab background colors")                      grab_backround_colors ;;
+            "Start user systemctl services")               start_user_services ;;
             "Github authenticate")                         authenticate_github ;;
             *)                                             echo "Goodbye!"; break;;
         esac
