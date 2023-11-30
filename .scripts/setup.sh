@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO: Compile vim with the correct flags instead of just downloading gvim
+# TODO: Add the systemd files to the repo and start the process for the battery notifier
 
 package_install=""
 package_last_option=""
@@ -48,56 +49,61 @@ get_package_install_options () {
 link_dotfiles () {
     echo "Linking dotfiles to the correct location..."
     echo "WARNING! All unsaved config files in the target directories will be deleted!"
-    read -p -r "Are you sure you want to continue? " yn
-    case $yn in
-        [Yy]* ) ;;
-        [Nn]* ) return 1;;
-        * ) echo "Please answer yes or no.";;
-    esac
+    while true
+    do
+        read -p "Are you sure you want to continue? " yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+
     echo "Linking .config folder files"
     if [ -d ~/.config/i3 ]
     then
         rm -rf ~/.config/i3
     fi
-    ln -sf ../.config/i3 ~/.config/i3
+    ln -sf ~/dotfiles/.config/i3 ~/.config/i3
 
     if [ -d ~/.config/alacritty ]
     then
         rm -rf ~/.config/alacritty
     fi
-    ln -sf ../.config/alacritty ~/.config/alacritty
+    ln -sf ~/dotfiles/.config/alacritty ~/.config/alacritty
 
     if [ -d ~/.config/picom ]
     then
         rm -rf ~/.config/picom
     fi
-    ln -sf ../.config/picom ~/.config/picom
+    ln -sf ~/dotfiles/.config/picom ~/.config/picom
 
     if [ -d ~/.config/polybar ]
     then
         rm -rf ~/.config/polybar
     fi
-    ln -sf ../.config/polybar ~/.config/polybar
+    ln -sf ~/dotfiles/.config/polybar ~/.config/polybar
 
     echo "Linking vim folder..."
     if [ -d ~/.vim ]
     then
         rm -rf ~/.vim
     fi
-    ln -sf ../.vim ~/.vim
+    ln -sf ~/dotfiles/.vim ~/.vim
 
     echo "Linking zsh folder..."
     if [ -d ~/.zsh ]
     then
         rm -rf ~/.zsh
     fi
-    ln -sf ../.zsh ~/.zsh
+    ln -sf ~/dotfiles/.zsh ~/.zsh
 
     echo "Linking other single files..."
-    ln -sf ../.xinitrc ~/.xinitrc
-    ln -sf ../.zprofile ~/.zprofile
-    ln -sf ../.zshrc ~/.zshrc
-    ln -sf ../.config/libinput-gestures.conf ~/.config/libinput-gestures.conf
+    ln -sf ~/dotfiles/.xinitrc ~/.xinitrc
+    ln -sf ~/dotfiles/.zprofile ~/.zprofile
+    ln -sf ~/dotfiles/.zshrc ~/.zshrc
+    ln -sf ~/dotfiles/.config/libinput-gestures.conf ~/.config/libinput-gestures.conf
+    ln -sf ~/dotfiles/.config/systemd/user/battery_notify.service ~/.config/systemd/user/battery_notify.service
 
     echo "Linking done!"
     return 0
@@ -118,9 +124,9 @@ set_zsh_default () {
 
     while true
     do
-        read -p -r "Do you want to install oh-my-zsh also?" yn
+        read -p -r "Do you want to install oh-my-zsh also? " yn
         case $yn in
-            [Yy]* ) ;;
+            [Yy]* ) break;;
             [Nn]* ) return 1;;
             * ) echo "Please answer yes or no.";;
         esac
