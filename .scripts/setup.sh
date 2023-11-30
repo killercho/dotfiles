@@ -59,44 +59,45 @@ link_dotfiles () {
     then
         rm -rf ~/.config/i3
     fi
-    ln -sf .config/i3 ~/.config/i3
+    ln -sf ../.config/i3 ~/.config/i3
 
     if [ -d ~/.config/alacritty ]
     then
         rm -rf ~/.config/alacritty
     fi
-    ln -sf .config/alacritty ~/.config/alacritty
+    ln -sf ../.config/alacritty ~/.config/alacritty
 
     if [ -d ~/.config/picom ]
     then
         rm -rf ~/.config/picom
     fi
-    ln -sf .config/picom ~/.config/picom
+    ln -sf ../.config/picom ~/.config/picom
 
     if [ -d ~/.config/polybar ]
     then
         rm -rf ~/.config/polybar
     fi
-    ln -sf .config/polybar ~/.config/polybar
+    ln -sf ../.config/polybar ~/.config/polybar
 
     echo "Linking vim folder..."
     if [ -d ~/.vim ]
     then
         rm -rf ~/.vim
     fi
-    ln -sf .vim ~/.vim
+    ln -sf ../.vim ~/.vim
 
     echo "Linking zsh folder..."
     if [ -d ~/.zsh ]
     then
         rm -rf ~/.zsh
     fi
-    ln -sf .zsh ~/.zsh
+    ln -sf ../.zsh ~/.zsh
 
     echo "Linking other single files..."
-    ln -sf .xinitrc ~/.xinitrc
-    ln -sf .zprofile ~/.zprofile
-    ln -sf .zshrc ~/.zshrc
+    ln -sf ../.xinitrc ~/.xinitrc
+    ln -sf ../.zprofile ~/.zprofile
+    ln -sf ../.zshrc ~/.zshrc
+    ln -sf ../.config/libinput-gestures.conf ~/.config/libinput-gestures.conf
 
     echo "Linking done!"
     return 0
@@ -313,7 +314,10 @@ EndSection
 
 EOT
 
-echo
+echo "WARNING! The libinput-gestures package needs yay to be installed."
+echo "If you dont have it installed please install it and then use this option again or install 'libinput-gestures' package on your own."
+echo "Trying to install the libinput-gestures package"
+yay -S libinput-gestures
 return 0
 }
 
