@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: Use the sed -i 's/pattern/replace' command to change the text in the config files
 # TODO: Compile vim with the correct flags instead of just downloading gvim
 
 package_install=""
@@ -263,15 +262,13 @@ install_ly () {
 
 install_lightdm_greeter () {
     echo "Link to the official theme i use: (https://github.com/lveteau/lightdm-webkit-modern-arch-theme)."
-    echo "To use the theme you have to change some files in /etc/lightdm/"
-    echo "First go to that folder and open the lightdm.conf file."
-    echo "There change the greeter-session value to lightdm-webkit2-greeter"
-    echo "Also change the webkit_theme value to ltheme in the lightdm-webkit2-greeter.conf"
-    echo "Everything else should be done automatically. Enjoy!"
 
     git clone https://github.com/lveteau/lightdm-webkit-modern-arch-theme.git
     sh lightdm-webkit-modern-arch-theme/install.sh
     rm -rf lightdm-webkit-modern-arch-theme
+
+    sed -i 's/greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
+    sed -i 's/webkit_theme.*=.*/webkit_theme        = ltheme/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
     return 0
 }
