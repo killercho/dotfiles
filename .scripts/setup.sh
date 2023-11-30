@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO: Use the sed -i 's/pattern/replace' command to change the text in the config files
+# TODO: Compile vim with the correct flags instead of just downloading gvim
 
 package_install=""
 package_last_option=""
@@ -113,7 +114,7 @@ setup_vim_env () {
 
 set_zsh_default () {
     echo "Switching to zsh as a default shell..."
-    sudo pacman -S "zsh" --noconfirm
+    sudo "${package_install}" "zsh" "${package_last_option}"
     chsh -s /usr/bin/zsh
 
     while true
