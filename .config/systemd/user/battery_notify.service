@@ -1,0 +1,8 @@
+[Unit]
+Description=Service that starts the battery notifier script in the ~/.scripts folder
+
+[Service]
+ExecStart=/home/AzSamSi/.scripts/battery_notify.sh
+
+[Install]
+WantedBy=default.target
