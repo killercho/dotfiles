@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: Compile vim with the correct flags instead of just downloading gvim
+# TODO: Add the systemd files to the repo and start the process for the battery notifier
+
 package_install=""
 package_last_option=""
 get_package_install_options () {
@@ -46,55 +49,61 @@ get_package_install_options () {
 link_dotfiles () {
     echo "Linking dotfiles to the correct location..."
     echo "WARNING! All unsaved config files in the target directories will be deleted!"
-    read -p -r "Are you sure you want to continue? " yn
-    case $yn in
-        [Yy]* ) ;;
-        [Nn]* ) return 1;;
-        * ) echo "Please answer yes or no.";;
-    esac
+    while true
+    do
+        read -p "Are you sure you want to continue? " yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+
     echo "Linking .config folder files"
     if [ -d ~/.config/i3 ]
     then
         rm -rf ~/.config/i3
     fi
-    ln -sf .config/i3 ~/.config/i3
+    ln -sf ~/dotfiles/.config/i3 ~/.config/i3
 
     if [ -d ~/.config/alacritty ]
     then
         rm -rf ~/.config/alacritty
     fi
-    ln -sf .config/alacritty ~/.config/alacritty
+    ln -sf ~/dotfiles/.config/alacritty ~/.config/alacritty
 
     if [ -d ~/.config/picom ]
     then
         rm -rf ~/.config/picom
     fi
-    ln -sf .config/picom ~/.config/picom
+    ln -sf ~/dotfiles/.config/picom ~/.config/picom
 
     if [ -d ~/.config/polybar ]
     then
         rm -rf ~/.config/polybar
     fi
-    ln -sf .config/polybar ~/.config/polybar
+    ln -sf ~/dotfiles/.config/polybar ~/.config/polybar
 
     echo "Linking vim folder..."
     if [ -d ~/.vim ]
     then
         rm -rf ~/.vim
     fi
-    ln -sf .vim ~/.vim
+    ln -sf ~/dotfiles/.vim ~/.vim
 
     echo "Linking zsh folder..."
     if [ -d ~/.zsh ]
     then
         rm -rf ~/.zsh
     fi
-    ln -sf .zsh ~/.zsh
+    ln -sf ~/dotfiles/.zsh ~/.zsh
 
     echo "Linking other single files..."
-    ln -sf .xinitrc ~/.xinitrc
-    ln -sf .zprofile ~/.zprofile
-    ln -sf .zshrc ~/.zshrc
+    ln -sf ~/dotfiles/.xinitrc ~/.xinitrc
+    ln -sf ~/dotfiles/.zprofile ~/.zprofile
+    ln -sf ~/dotfiles/.zshrc ~/.zshrc
+    ln -sf ~/dotfiles/.config/libinput-gestures.conf ~/.config/libinput-gestures.conf
+    ln -sf ~/dotfiles/.config/systemd/user/battery_notify.service ~/.config/systemd/user/battery_notify.service
 
     echo "Linking done!"
     return 0
@@ -110,14 +119,14 @@ setup_vim_env () {
 
 set_zsh_default () {
     echo "Switching to zsh as a default shell..."
-    sudo pacman -S "zsh" --noconfirm
+    sudo "${package_install}" "zsh" "${package_last_option}"
     chsh -s /usr/bin/zsh
 
     while true
     do
-        read -p -r "Do you want to install oh-my-zsh also?" yn
+        read -p -r "Do you want to install oh-my-zsh also? " yn
         case $yn in
-            [Yy]* ) ;;
+            [Yy]* ) break;;
             [Nn]* ) return 1;;
             * ) echo "Please answer yes or no.";;
         esac
@@ -259,15 +268,13 @@ install_ly () {
 
 install_lightdm_greeter () {
     echo "Link to the official theme i use: (https://github.com/lveteau/lightdm-webkit-modern-arch-theme)."
-    echo "To use the theme you have to change some files in /etc/lightdm/"
-    echo "First go to that folder and open the lightdm.conf file."
-    echo "There change the greeter-session value to lightdm-webkit2-greeter"
-    echo "Also change the webkit_theme value to ltheme in the lightdm-webkit2-greeter.conf"
-    echo "Everything else should be done automatically. Enjoy!"
 
     git clone https://github.com/lveteau/lightdm-webkit-modern-arch-theme.git
     sh lightdm-webkit-modern-arch-theme/install.sh
     rm -rf lightdm-webkit-modern-arch-theme
+
+    sed -i 's/greeter-session=.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
+    sed -i 's/webkit_theme.*=.*/webkit_theme        = ltheme/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
     return 0
 }
@@ -311,7 +318,10 @@ EndSection
 
 EOT
 
-echo
+echo "WARNING! The libinput-gestures package needs yay to be installed."
+echo "If you dont have it installed please install it and then use this option again or install 'libinput-gestures' package on your own."
+echo "Trying to install the libinput-gestures package"
+yay -S libinput-gestures
 return 0
 }
 
@@ -327,6 +337,12 @@ grab_backround_colors () {
     return 0
 }
 
+start_user_services () {
+    systemctl --user daemon-reload
+    systemctl --user start battery_notify.service
+    systemctl --user enable battery_notify.service
+}
+
 execute_all () {
     # Function that executes all other functions in the main menu
     install_system
@@ -335,13 +351,15 @@ execute_all () {
     install_sound
     install_other
     install_yay
-    install_ly
+    #install_ly
     install_lightdm
     set_zsh_default
     setup_vim_env
     link_dotfiles
     enable_better_mouse_movements
+    grab_backround_colors
     authenticate_github
+    start_user_services
 
     return 0
 }
@@ -368,28 +386,30 @@ main () {
         "Enable mouse tapping and natural scrolling"
         "Github authenticate"
         "Grab background colors"
+        "Start user systemctl services"
         "Cancel"
     )
     PS3="Select an option: "
     select option in "${allOptions[@]}"
     do
         case $option in
-            "All (fresh install)")                execute_all ;;
-            "Install system programs")            install_system ;;
-            "Install xorg programs")              install_xorg ;;
-            "Install fonts")                      install_fonts ;;
-            "Install sound programs")             install_sounds;;
-            "Install other programs")             install_others;;
-            "Install yay")                        install_yay ;;
-            "Install ly")                         install_ly ;;
-            "Install lightdm")                    install_lightdm ;;
-            "Set zsh as the default shell")       set_zsh_default ;;
-            "Setup vim's plugins")                setup_vim_env ;;
-            "Link dotfiles to the correct place") link_dotfiles ;;
-            "Better mouse")                       enable_better_mouse_movements ;;
-            "Grab background colors")             enable_better_mouse_movements ;;
-            "Github authenticate")                authenticate_github ;;
-            *)                                    echo "Goodbye!"; break;;
+            "All (fresh install)")                         execute_all ;;
+            "Install system programs")                     install_system ;;
+            "Install xorg programs")                       install_xorg ;;
+            "Install fonts")                               install_fonts ;;
+            "Install sound programs")                      install_sounds;;
+            "Install other programs")                      install_others;;
+            "Install yay")                                 install_yay ;;
+            "Install ly")                                  install_ly ;;
+            "Install lightdm")                             install_lightdm ;;
+            "Set zsh as the default shell")                set_zsh_default ;;
+            "Setup vim's plugins")                         setup_vim_env ;;
+            "Link dotfiles to the correct place")          link_dotfiles ;;
+            "Enable mouse tapping and natural scrolling")  enable_better_mouse_movements ;;
+            "Grab background colors")                      grab_backround_colors ;;
+            "Start user systemctl services")               start_user_services ;;
+            "Github authenticate")                         authenticate_github ;;
+            *)                                             echo "Goodbye!"; break;;
         esac
     done
 
