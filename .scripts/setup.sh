@@ -124,7 +124,7 @@ set_zsh_default () {
 
     while true
     do
-        read -p -r "Do you want to install oh-my-zsh also? " yn
+        read -p "Do you want to install oh-my-zsh also? " yn
         case $yn in
             [Yy]* ) break;;
             [Nn]* ) return 1;;
