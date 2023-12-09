@@ -100,6 +100,9 @@ xnoremap K 5k
 "Yanks from cursor to the end of the line
 nnoremap Y y$
 
+"Yank in '+' register
+vnoremap <C-y> "+y
+
 "Copy and paste text under or over the cursor
 nnoremap zj mayyp`aj
 nnoremap zk mayyP`ak
@@ -107,7 +110,7 @@ nnoremap zk mayyP`ak
 "Paste in different modes
 inoremap <C-p> <Esc>pa
 cnoremap <C-p> <C-r>"
-nnoremap <C-p> "+p<CR>
+nnoremap <C-p> "+p
 
 "NERDTree bindings
 nnoremap <C-f> :NERDTreeFocus<CR>
