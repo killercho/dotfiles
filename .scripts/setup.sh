@@ -119,7 +119,7 @@ setup_vim_env () {
 
 set_zsh_default () {
     echo "Switching to zsh as a default shell..."
-    sudo "${package_install}" "zsh" "${package_last_option}"
+    sudo ${package_install} zsh ${package_last_option}
     chsh -s /usr/bin/zsh
 
     while true
@@ -150,7 +150,7 @@ install_fonts () {
     for i in "${!fonts[@]}";
     do
         echo
-        sudo "${package_install}" "${fonts[$i]}" "${package_last_option}"
+        sudo ${package_install} ${fonts[$i]} ${package_last_option}
     done
     return 0
 }
@@ -161,7 +161,7 @@ install_xorg () {
     for i in "${!xorgs[@]}";
     do
         echo
-        sudo "${package_install}" "${xorgs[$i]}" "${package_last_option}"
+        sudo ${package_install} ${xorgs[$i]} ${package_last_option}
     done
     return 0
 }
@@ -172,7 +172,7 @@ install_sounds () {
     for i in "${!sounds[@]}";
     do
         echo
-        sudo "${package_install}" "${sounds[$i]}" "${package_last_option}"
+        sudo ${package_install} ${sounds[$i]} ${package_last_option}
     done
     return 0
 }
@@ -197,7 +197,7 @@ install_system () {
     for i in "${!systems[@]}";
     do
         echo
-        sudo "${package_install}" "${systems[$i]}" "${package_last_option}"
+        sudo ${package_install} ${systems[$i]} ${package_last_option}
     done
     return 0
 }
@@ -221,7 +221,7 @@ install_others () {
     for i in "${!others[@]}";
     do
         echo
-        sudo "${package_install}" "${others[$i]}" "${package_last_option}"
+        sudo ${package_install} ${others[$i]} ${package_last_option}
     done
 
     pip3 install pywal
@@ -289,7 +289,7 @@ install_lightdm () {
     for i in "${!lightPackages[@]}";
     do
         echo
-        sudo "${package_install}" "${lightPackages[$i]}" "${package_last_option}"
+        sudo ${package_install} ${lightPackages[$i]} ${package_last_option}
     done
 
     install_lightdm_greeter
