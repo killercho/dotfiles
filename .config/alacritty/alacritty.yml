@@ -1,88 +1,43 @@
-# Garuda Linux configuration for Alacritty
 env:
   TERM: xterm-256color
 
-window:
-  dimensions:
-    columns: 100
-    lines: 30
-  dynamic_padding: true
-  decorations: full
-  decorations_theme_variant: dark
-  title: Alacritty@Garuda
-  opacity: 0.6
-  class:
-    instance: Alacritty
-    general: Alacritty
-
-scrolling:
-  history: 10000
-  multiplier: 3
-
 font:
-  size: 12
   normal:
-    family: FiraCode Nerd Font Mono
-  bold:
-    family:  FiraCode Nerd Font Mono
-  italic:
-    family:  FiraCode Nerd Font Mono
-  bold_italic:
-    family:  FiraCode Nerd Font Mono
-    size: 12.0
+    family: JetBrains Mono
+    style: Regular
 
-draw_bold_text_with_bright_colors: true
+  size: 9
 
-save_to_clipboard: true
+window:
+  opacity: 0.7
 
-window.dynamic_title: true
 
-cursor:
-  style: Underline
+    # Colors (Tokyo Night)
+    # Source: https://github.com/zatchheems/tokyo-night-alacritty-theme
+  colors:
+    # Default colors
+    primary:
+      background: "0x1a1b26"
+    foreground: "0xa9b1d6"
 
-live_config_reload: true
+      # Normal colors
+    normal:
+      black: "0x32344a"
+    red: "0xf7768e"
+    green: "0x9ece6a"
+    yellow: "0xe0af68"
+    blue: "0x7aa2f7"
+    magenta: "0xad8ee6"
+    cyan: "0x449dab"
+    white: "0x787c99"
 
-shell:
-  program: /usr/bin/fish
-  args:
-    - --login
-
-mouse:
-  hide_when_typing: true
-
-key_bindings:
-    # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Plus,     mods: Control,       action: IncreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-
-colors:
-  primary:
-    background: '0x0a1124'
-    foreground: '0xeec49a'
-  cursor:
-    text:       '0x0a1124'
-    cursor:     '0xeec49a'
-  normal:
-    black:      '0x0a1124'
-    red:        '0x5F4149'
-    green:      '0xEB3247'
-    yellow:     '0xBC4349'
-    blue:       '0xF35645'
-    magenta:    '0xF6A73B'
-    cyan:       '0xFAD32F'
-    white:      '0xeec49a'
-  bright:
-    black:      '0xa6896b'
-    red:        '0x5F4149'
-    green:      '0xEB3247'
-    yellow:     '0xBC4349'
-    blue:       '0xF35645'
-    magenta:    '0xF6A73B'
-    cyan:       '0xFAD32F'
-    white:      '0xeec49a'
+      # Bright colors
+    bright:
+      black: "0x444b6a"
+    red: "0xff7a93"
+    green: "0xb9f27c"
+    yellow: "0xff9e64"
+    blue: "0x7da6ff"
+    magenta: "0xbb9af7"
+    cyan: "0x0db9d7"
+    white: "0xacb0d0"
