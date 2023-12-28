@@ -11,6 +11,7 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
 Plug 'killercho/oceanic-next'
 Plug 'kristian3551/cppsnippets'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug '/home/AzSamSi/Programming/Vim/ivan-space-ninja'
 call plug#end()
