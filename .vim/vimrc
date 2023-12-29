@@ -145,6 +145,9 @@ nnoremap <c-down> 5<c-w>-
 nnoremap <c-left> 5<c-w><
 nnoremap <c-right> 5<c-w>>
 
+"Filetype options
+let g:filetype_pl="prolog"
+
 "Coc binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
 nnoremap <silent> gd <Plug>(coc-definition)
