@@ -157,6 +157,9 @@ nnoremap <silent> <C-d> :call cocconf#ShowDocumentation()<CR>
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+"Filetype options
+let g:filetype_pl="prolog"
+
 augroup vimStartup
     au!
     autocmd BufReadPost *
