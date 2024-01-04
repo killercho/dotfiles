@@ -105,4 +105,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH/$HOME/.local/bin"
 
+export BROWSER="firefox"
+
 [ -f "/home/AzSamSi/.ghcup/env" ] && source "/home/AzSamSi/.ghcup/env" # ghcup-env
