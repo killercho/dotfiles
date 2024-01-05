@@ -24,46 +24,6 @@ red = "0xff7a93"
 white = "0xacb0d0"
 yellow = "0xff9e64"
 
-[[window.colors.bright.key_bindings]]
-action = "Paste"
-key = "V"
-mods = "Control|Shift"
-
-[[window.colors.bright.key_bindings]]
-action = "Copy"
-key = "C"
-mods = "Control|Shift"
-
-[[window.colors.bright.key_bindings]]
-action = "PasteSelection"
-key = "Insert"
-mods = "Shift"
-
-[[window.colors.bright.key_bindings]]
-action = "ResetFontSize"
-key = "Key0"
-mods = "Control"
-
-[[window.colors.bright.key_bindings]]
-action = "IncreaseFontSize"
-key = "Equals"
-mods = "Control"
-
-[[window.colors.bright.key_bindings]]
-action = "IncreaseFontSize"
-key = "Plus"
-mods = "Control"
-
-[[window.colors.bright.key_bindings]]
-action = "DecreaseFontSize"
-key = "Minus"
-mods = "Control"
-
-[[window.colors.bright.key_bindings]]
-action = "DecreaseFontSize"
-key = "Minus"
-mods = "Control"
-
 [window.colors.normal]
 black = "0x32344a"
 blue = "0x7aa2f7"
