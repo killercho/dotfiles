@@ -9,9 +9,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
+Plug 'ctrlpvim/ctrlp.vim'
+
 Plug 'killercho/oceanic-next'
 Plug 'kristian3551/cppsnippets'
-
 Plug 'killercho/ivan-space-ninja'
 call plug#end()
 
@@ -147,6 +148,12 @@ nnoremap <c-right> 5<c-w>>
 
 "Filetype options
 let g:filetype_pl="prolog"
+
+"CtrlP settings
+"Press <c-d> to switch to filename only search instead of full path.
+"Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
+"Use <c-j>, <c-k> or the arrow keys to navigate the result list.
+let g:ctrlp_map = '<C-o>'
 
 "Coc binds
 nnoremap <C-c> :call nerdcommenter#Comment(0, 'toggle')<CR>
