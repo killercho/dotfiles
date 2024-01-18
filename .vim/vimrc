@@ -10,9 +10,10 @@ Plug 'preservim/nerdcommenter'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dense-analysis/ale'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'makerj/vim-pdf'
 
-Plug 'killercho/oceanic-next'
 Plug 'kristian3551/cppsnippets'
+Plug 'killercho/oceanic-next'
 Plug 'killercho/ivan-space-ninja'
 call plug#end()
 
